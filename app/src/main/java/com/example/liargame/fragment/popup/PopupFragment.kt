@@ -1,60 +1,116 @@
 package com.example.liargame.fragment.popup
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.DialogFragment
+import com.example.liargame.DEFINES.DEFINES
+import com.example.liargame.DEFINES.SubjectEnum
 import com.example.liargame.R
+import com.example.liargame.listener.OnPopupDismissListener
+import java.util.*
+import kotlin.Exception
+import kotlin.collections.ArrayList
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class PopupFragment(bundle : Bundle, answer : String?, list : ArrayList<String>, onPopupDismissListener: OnPopupDismissListener) : DialogFragment() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [PopupFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class PopupFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var mBundle : Bundle
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private var mAnswer : String? = null
+
+    private var mList : ArrayList<String>? = null
+
+    private var buttonList : ArrayList<TextView>? = null
+
+    private var mPopupDismissListener : OnPopupDismissListener
+
+    private var mAnswerIndex : Int = 0
+
+    init {
+        mBundle = bundle
+        mAnswer = answer
+        mList = list
+        mPopupDismissListener = onPopupDismissListener
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        isCancelable = false
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_popup, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PopupFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PopupFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        buttonList = arrayListOf(
+            view.findViewById(R.id.popup_0),
+            view.findViewById(R.id.popup_1),
+            view.findViewById(R.id.popup_2),
+            view.findViewById(R.id.popup_3),
+            view.findViewById(R.id.popup_4),
+            view.findViewById(R.id.popup_5),
+            view.findViewById(R.id.popup_6),
+            view.findViewById(R.id.popup_7),
+            view.findViewById(R.id.popup_8)
+        )
+
+        for (i in 0 until buttonList!!.size) {
+            buttonList!![i].visibility = View.INVISIBLE
+            buttonList!![i].isClickable = false
+        }
+
+        try {
+
+            when (mBundle.getString("BRANCH")) {
+                "주제" -> {
+                    view.findViewById<TextView>(R.id.fragment_popup_title_text)?.text = "주제를 선택해주세요."
+                    for (i in 0 until mList!!.size) {
+                        buttonList!![i].visibility = View.VISIBLE
+                        buttonList!![i].text = mList!![i]
+                        buttonList!![i].isClickable = true
+                    }
+                }
+                "제시어" -> {
+                    view.findViewById<TextView>(R.id.fragment_popup_title_text)?.text = "제시어를 선택해주세요."
+                    mAnswerIndex = Random().nextInt(DEFINES.HINT_COUNT)
+                    for (i in 0 until DEFINES.HINT_COUNT) {
+                        buttonList!![i].visibility = View.VISIBLE
+                        buttonList!![i].text = mList!![i]
+                        buttonList!![i].isClickable = true
+                    }
+                    buttonList!![mAnswerIndex].text = mAnswer
+                }
+                else -> {
+                    Log.d("[PopupFragment]", "onViewCreate() -> BRANCH is null")
                 }
             }
+        } catch (e : Exception) {
+            e.printStackTrace()
+        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if (view != null) {
+            for (i in 0 until buttonList!!.size) {
+                buttonList!![i].setOnClickListener {
+                    if (i == mAnswerIndex) {
+                        mPopupDismissListener.onPopupDismissListener(false)
+                        dismiss()
+                    }
+                    mPopupDismissListener.onPopupDismissListener(true)
+                    dismiss()
+                }
+            }
+        }
     }
 }

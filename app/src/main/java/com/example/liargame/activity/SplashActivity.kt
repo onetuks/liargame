@@ -11,8 +11,7 @@ import com.example.liargame.R
 
 class SplashActivity : AppCompatActivity() {
 
-    private var clickableStartButton : Boolean = false
-    private lateinit var startButton : Button
+    private lateinit var startButton : TextView
 
     // 다른 액티비티에서도 사용할 수 있도록 하는 object
     companion object {
@@ -32,11 +31,11 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        startButton = findViewById<Button>(R.id.activity_splash_start_button)
+        startButton = findViewById<TextView>(R.id.activity_splash_start_button)
 
-        Handler(Looper.getMainLooper()).post {
-            startButton.animate().alpha(1f).setDuration(30000).start()
-        }
+        Handler(Looper.getMainLooper()).postDelayed({
+            startButton.animate().alpha(1f).setDuration(300).start()
+        }, 3000)
     }
 
     /**
@@ -65,15 +64,9 @@ class SplashActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        if (startButton.alpha >= 1f) {
-            clickableStartButton = true
-        }
-
-        if (clickableStartButton) {
-            startButton.setOnClickListener {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            }
+        startButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 }

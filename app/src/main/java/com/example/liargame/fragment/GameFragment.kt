@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.example.liargame.DEFINES.DEFINES
 import com.example.liargame.R
 import com.example.liargame.listener.OnGameEventListener
+import org.w3c.dom.Text
 import java.util.*
 import kotlin.properties.Delegates
 
@@ -109,7 +110,7 @@ class GameFragment(word : String, onGameEventListener: OnGameEventListener) : Fr
              * 2. 라이어 판별 -> 라이어 뷰 visible
              * 3. 제시어 확인 시 순서 텍스트 할당
              */
-            view?.findViewById<ImageButton>(R.id.fragment_game_show_button)?.setOnClickListener {
+            view?.findViewById<TextView>(R.id.fragment_game_show_button)?.setOnClickListener {
                 isShowCover = false
                 isLiar = (playerIndex == liarIndex)
                 if (isLiar) {
@@ -128,13 +129,24 @@ class GameFragment(word : String, onGameEventListener: OnGameEventListener) : Fr
              * 2. 현재 순서 증가
              * 3. 순서가 다 끝났으면 범인색출 뷰 visible
              */
-            view?.findViewById<ImageButton>(R.id.fragment_game_check_word_button)?.setOnClickListener {
+            view?.findViewById<TextView>(R.id.fragment_game_check_word_button)?.setOnClickListener {
+                isShowCover = true
+                playerIndex++
                 if (playerIndex >= DEFINES.PLAYER_COUNT) {
                     view?.findViewById<LinearLayout>(R.id.fragment_game_show_button_layout)?.visibility = View.GONE
                     view?.findViewById<LinearLayout>(R.id.fragment_game_show_word_layout)?.visibility = View.GONE
                     view?.findViewById<LinearLayout>(R.id.fragment_game_find_liar_layout)?.visibility = View.VISIBLE
                 }
-                playerIndex++
+            }
+
+            /**
+             * 범인 색출 화면
+             *
+             * TODO
+             * 1. 현재 게임을 리셋
+             */
+            view?.findViewById<LinearLayout>(R.id.fragment_game_find_liar_layout)?.setOnClickListener {
+                mOnGameEventListener.onGameEndListener()
             }
         }
     }

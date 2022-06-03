@@ -4,12 +4,12 @@ object DEFINES {
 
     var MAX_PLAYER_COUNT = 7
     var MIN_PLAYER_COUNT = 3
-    var MAX_HINT_COUNT = 10
+    var MAX_HINT_COUNT = 9
     var MIN_HINT_COUNT = 3
 
     var PLAYER_COUNT : Int = 3
     var GAME_MODE : Enum<GameModeEnum> = GameModeEnum.NORMAL
-    var HINT_COUNT : Int = 20
+    var HINT_COUNT : Int = 9
 
     var SUBJECT : Enum<SubjectEnum> = SubjectEnum.OBJECT
 

@@ -1,33 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="250dp"
+    android:layout_height="300dp"
+    android:layout_gravity="center"
     tools:context=".fragment.SettingFragment">
 
     <LinearLayout
-        android:layout_width="250dp"
-        android:layout_height="280dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:padding="13dp"
+        android:background="@drawable/fragment_background"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginVertical="15dp"
+            android:background="@drawable/fragment_select_round"
             android:orientation="horizontal">
 
-            <ImageButton
+            <LinearLayout
                 android:id="@+id/fragment_setting_player_count_lower"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingHorizontal="15dp"/>
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/left_button"/>
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="150dp"
+                android:layout_weight="0.5"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -35,68 +45,100 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:text="참가인원 : "/>
 
                 <TextView
                     android:id="@+id/fragment_setting_player_count_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
                     android:text="3명"/>
             </LinearLayout>
 
-            <ImageButton
+            <LinearLayout
                 android:id="@+id/fragment_setting_player_count_higher"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingHorizontal="15dp"/>
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/right_button"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginVertical="15dp"
+            android:background="@drawable/fragment_select_round"
+            android:layout_marginVertical="10dp"
             android:orientation="horizontal">
 
-            <ImageButton
+            <LinearLayout
                 android:id="@+id/fragment_setting_mode_pre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingHorizontal="15dp"/>
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="match_parent">
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/left_button"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/fragment_setting_mode_text"
-                android:layout_width="150dp"
+                android:layout_weight="0.5"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="노말모드"
+                android:text="NORMAL"
+                android:paddingTop="15dp"
+                android:textColor="@color/white"
+                android:paddingBottom="15dp"
                 android:gravity="center"/>
-
-            <ImageButton
+            <LinearLayout
                 android:id="@+id/fragment_setting_mode_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingHorizontal="15dp"/>
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="match_parent">
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/right_button"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginVertical="15dp"
+            android:background="@drawable/fragment_select_round"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/fragment_setting_hint_count_lower"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingHorizontal="15dp"/>
-
             <LinearLayout
-                android:layout_width="150dp"
+                android:id="@+id/fragment_setting_hint_count_lower"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="match_parent">
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/left_button"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="0.5"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -104,34 +146,44 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:text="제시어 개수 : "/>
 
                 <TextView
                     android:id="@+id/fragment_setting_hint_count_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="20"/>
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:text="9"/>
             </LinearLayout>
-
-            <ImageButton
+            <LinearLayout
                 android:id="@+id/fragment_setting_hint_count_higher"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingHorizontal="15dp"/>
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="match_parent">
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/right_button"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/fragment_setting_play_btn"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center">
-
-            <ImageButton
-                android:id="@+id/fragment_setting_play_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
+            android:layout_marginTop="50dp"
+            android:text="게임 시작"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="20dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/play_game_button"
+            android:gravity="center"/>
     </LinearLayout>
 
 </FrameLayout>

@@ -4,24 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_most_deep"
     tools:context=".activity.MainActivity">
 
     <LinearLayout
         android:id="@+id/activity_main_subject_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:background="@color/teal_200"
+        android:background="@drawable/subject_background"
+        android:gravity="center_vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="50dp"
-        android:paddingHorizontal="10dp">
+        android:layout_marginTop="50dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
             android:text="주제"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="27dp"
+            android:background="@drawable/yellow_1"
             android:layout_gravity="center_vertical"/>
 
         <TextView
@@ -33,32 +39,18 @@
             android:textSize="20dp"
             android:paddingHorizontal="50dp"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
             android:id="@+id/activity_main_subject_btn_layout"
-            android:layout_gravity="center_vertical"
-            android:visibility="visible"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/design_default_color_on_primary"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="1dp"
+            android:gravity="center"
+            android:text="변경"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:background="@drawable/change_button"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="변경"
-                android:textColor="@color/white"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
     <FrameLayout
@@ -70,14 +62,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <ImageButton
+    <LinearLayout
         android:id="@+id/activity_main_restart_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/design_default_color_on_primary"
+        android:background="@drawable/reset_button_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_baseline_refresh_24"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
