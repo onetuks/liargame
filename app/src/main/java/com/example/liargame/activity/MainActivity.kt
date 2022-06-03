@@ -128,9 +128,9 @@ class MainActivity : AppCompatActivity(), OnGameEventListener, OnPopupDismissLis
 //        }
 
         // 재시작 버튼
-        findViewById<LinearLayout>(R.id.activity_main_restart_button).setOnClickListener {
-            resetGame()
-        }
+        /**
+         * FIXME : 버튼 클릭 이벤트 사용해보기
+         */
     }
 
     override fun onGameStartListener() {
@@ -172,12 +172,12 @@ class MainActivity : AppCompatActivity(), OnGameEventListener, OnPopupDismissLis
 
     private fun resetGame() {
         try {
-            isShowResetButton = false
-//            mFragment = SettingFragment(this)
-            transaction = supportFragmentManager.beginTransaction()
-            transaction!!.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            transaction!!.replace(R.id.activity_main_game_frame_layout, SettingFragment(this))
-            transaction!!.commit()
+            /**
+             * FIXME : 트랜잭션 사용하기
+             *
+             * 1. 리셋버튼이 안 보이게
+             * 2. 트랜잭션 이용하여 Setting으로 돌아갈 수 있도록 (다른 Fragment는 모두 지워지도록)
+             */
         } catch (e : Exception) {
             e.printStackTrace()
         }
@@ -189,8 +189,9 @@ class MainActivity : AppCompatActivity(), OnGameEventListener, OnPopupDismissLis
             SubjectEnum.FOOD -> mList = DEFINES.WORD.FOOD_LIST
             SubjectEnum.JOB -> mList = DEFINES.WORD.JOB_LIST
         }
-        var index = Random().nextInt(mList!!.size)
-        mWord = mList!!.get(index)
+        /**
+         * FIXME : 랜덤함수와 리스트 이용해보기
+         */
     }
 
 }

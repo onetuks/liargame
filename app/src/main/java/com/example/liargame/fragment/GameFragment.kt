@@ -111,14 +111,9 @@ class GameFragment(word : String, onGameEventListener: OnGameEventListener) : Fr
              * 3. 제시어 확인 시 순서 텍스트 할당
              */
             view?.findViewById<TextView>(R.id.fragment_game_show_button)?.setOnClickListener {
-                isShowCover = false
-                isLiar = (playerIndex == liarIndex)
-                if (isLiar) {
-                    view?.findViewById<TextView>(R.id.fragment_game_liar_index_text)?.text = "설명 순서 : ${playerIndex+1}번"
-                } else {
-                    view?.findViewById<TextView>(R.id.fragment_game_not_liar_word_text)?.text = mWord
-                    view?.findViewById<TextView>(R.id.fragment_game_not_liar_index_text)?.text = "설명 순서 : ${playerIndex+1}번"
-                }
+                /**
+                 * FIXME : 제시어 확인 로직 만들어보기
+                 */
             }
 
             /**
@@ -130,13 +125,9 @@ class GameFragment(word : String, onGameEventListener: OnGameEventListener) : Fr
              * 3. 순서가 다 끝났으면 범인색출 뷰 visible
              */
             view?.findViewById<TextView>(R.id.fragment_game_check_word_button)?.setOnClickListener {
-                isShowCover = true
-                playerIndex++
-                if (playerIndex >= DEFINES.PLAYER_COUNT) {
-                    view?.findViewById<LinearLayout>(R.id.fragment_game_show_button_layout)?.visibility = View.GONE
-                    view?.findViewById<LinearLayout>(R.id.fragment_game_show_word_layout)?.visibility = View.GONE
-                    view?.findViewById<LinearLayout>(R.id.fragment_game_find_liar_layout)?.visibility = View.VISIBLE
-                }
+                /**
+                 * FIXME : 확인 완료 버튼 만들어보기
+                 */
             }
 
             /**

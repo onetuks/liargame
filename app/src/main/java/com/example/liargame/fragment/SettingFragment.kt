@@ -62,13 +62,9 @@ class SettingFragment(onGameStartListener: OnGameEventListener) : Fragment() {
             // 인원 증가
             view?.findViewById<LinearLayout>(R.id.fragment_setting_player_count_higher)?.setOnClickListener {
                 Log.d("[SettingFragment]", "인원증가 버튼 클릭")
-                if (DEFINES.PLAYER_COUNT < DEFINES.MAX_PLAYER_COUNT) {
-                    DEFINES.PLAYER_COUNT++
-                    Handler(Looper.getMainLooper()).post {
-                        view?.findViewById<TextView>(R.id.fragment_setting_player_count_text)?.text =
-                            "${DEFINES.PLAYER_COUNT}명"
-                    }
-                }
+                /**
+                 * FIXME : 인원 증가 로직 만들어보기
+                 */
             }
 
             // 이전 모드
@@ -100,13 +96,9 @@ class SettingFragment(onGameStartListener: OnGameEventListener) : Fragment() {
             // 제시어 감소
             view?.findViewById<LinearLayout>(R.id.fragment_setting_hint_count_lower)?.setOnClickListener {
                 Log.d("[SettingFragment]", "제시어 감소 버튼 클릭")
-                if (DEFINES.HINT_COUNT > DEFINES.MIN_HINT_COUNT) {
-                    DEFINES.HINT_COUNT--
-                    Handler(Looper.getMainLooper()).post {
-                        view?.findViewById<TextView>(R.id.fragment_setting_hint_count_text)?.text =
-                            "${DEFINES.HINT_COUNT}"
-                    }
-                }
+                /**
+                 * FIXME : 제시어 감소 로직 만들어보기
+                 */
             }
 
             // 제시어 증가
@@ -125,7 +117,9 @@ class SettingFragment(onGameStartListener: OnGameEventListener) : Fragment() {
             view?.findViewById<TextView>(R.id.fragment_setting_play_btn)?.setOnClickListener {
                 Log.d("[SettingFragment]", "게임 시작 버튼 클릭")
                 // 게임 시작 리스너 콜
-                mOnGameEventListener?.onGameStartListener()
+                /**
+                 * FIXME : 리스너 사용해보기
+                 */
             }
         }
     }
