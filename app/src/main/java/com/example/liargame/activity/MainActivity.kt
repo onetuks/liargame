@@ -130,7 +130,15 @@ class MainActivity : AppCompatActivity(), OnGameEventListener, OnPopupDismissLis
         // 재시작 버튼
         /**
          * FIXME : 버튼 클릭 이벤트 사용해보기
+         *
          */
+        findViewById<LinearLayout>(R.id.activity_main_restart_button).setOnClickListener {
+            resetGame()
+            transaction = supportFragmentManager.beginTransaction()
+            transaction!!.replace(R.id.activity_main_game_frame_layout, SettingFragment(this))
+            transaction!!.commit()
+        }
+
     }
 
     override fun onGameStartListener() {
@@ -178,6 +186,8 @@ class MainActivity : AppCompatActivity(), OnGameEventListener, OnPopupDismissLis
              * 1. 리셋버튼이 안 보이게
              * 2. 트랜잭션 이용하여 Setting으로 돌아갈 수 있도록 (다른 Fragment는 모두 지워지도록)
              */
+            findViewById<LinearLayout>(R.id.activity_main_restart_button).visibility = View.INVISIBLE
+
         } catch (e : Exception) {
             e.printStackTrace()
         }

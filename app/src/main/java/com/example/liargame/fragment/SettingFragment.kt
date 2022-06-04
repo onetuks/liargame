@@ -65,6 +65,12 @@ class SettingFragment(onGameStartListener: OnGameEventListener) : Fragment() {
                 /**
                  * FIXME : 인원 증가 로직 만들어보기
                  */
+                if (DEFINES.PLAYER_COUNT<DEFINES.MAX_PLAYER_COUNT)
+                    DEFINES.PLAYER_COUNT++
+                Handler(Looper.getMainLooper()).post {
+                    view?.findViewById<TextView>(R.id.fragment_setting_player_count_text)?.text =
+                        "${DEFINES.PLAYER_COUNT}명"
+                }
             }
 
             // 이전 모드
@@ -99,13 +105,20 @@ class SettingFragment(onGameStartListener: OnGameEventListener) : Fragment() {
                 /**
                  * FIXME : 제시어 감소 로직 만들어보기
                  */
+                if (DEFINES.HINT_COUNT > DEFINES.MIN_HINT_COUNT){
+                    DEFINES.HINT_COUNT --
+                    Handler(Looper.getMainLooper()).post {
+                        view?.findViewById<TextView>(R.id.fragment_setting_hint_count_text)?.text =
+                            "${DEFINES.HINT_COUNT}"
+                    }
+                }
             }
 
             // 제시어 증가
             view?.findViewById<LinearLayout>(R.id.fragment_setting_hint_count_higher)?.setOnClickListener {
                 Log.d("[SettingFragment]", "제시어 증가 버튼 클릭")
-                if (DEFINES.HINT_COUNT < DEFINES.MAX_HINT_COUNT) {
-                    DEFINES.HINT_COUNT++
+                if (DEFINES.HINT_COUNT < DEFINES.MAX_HINT_COUNT){
+                    DEFINES.HINT_COUNT ++
                     Handler(Looper.getMainLooper()).post {
                         view?.findViewById<TextView>(R.id.fragment_setting_hint_count_text)?.text =
                             "${DEFINES.HINT_COUNT}"
@@ -120,6 +133,7 @@ class SettingFragment(onGameStartListener: OnGameEventListener) : Fragment() {
                 /**
                  * FIXME : 리스너 사용해보기
                  */
+                mOnGameEventListener?.onGameStartListener()
             }
         }
     }

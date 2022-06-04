@@ -15,7 +15,7 @@ object DEFINES {
 
     object WORD {
         var OBJECT_LIST : ArrayList<String> = arrayListOf(
-            "장난감", "컴퓨터", "마우스", "지갑", "숟가락", "양말", "물통", "나무"
+            "장난감", "컴퓨터", "마우스", "지갑", "숟가락", "양말", "물통", "나무", "볼펜"
         )
 
         var FOOD_LIST : ArrayList<String> = arrayListOf(

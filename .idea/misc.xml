@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/git/LiarGame_Sample/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.269" />
         <entry key="..\:/git/LiarGame_Sample/app/src/main/res/drawable/check_done_button.xml" value="0.2785" />
         <entry key="..\:/git/LiarGame_Sample/app/src/main/res/drawable/cold_blue_background.xml" value="0.2785" />
         <entry key="..\:/git/LiarGame_Sample/app/src/main/res/drawable/fragment_background.xml" value="0.2785" />

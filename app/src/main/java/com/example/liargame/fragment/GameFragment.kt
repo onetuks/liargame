@@ -114,6 +114,14 @@ class GameFragment(word : String, onGameEventListener: OnGameEventListener) : Fr
                 /**
                  * FIXME : 제시어 확인 로직 만들어보기
                  */
+                isShowCover = false
+                isLiar = (playerIndex == liarIndex)
+                if (isLiar) {
+                    view?.findViewById<TextView>(R.id.fragment_game_liar_index_text)?.text = "설명 순서 : ${playerIndex+1}번"
+                } else {
+                    view?.findViewById<TextView>(R.id.fragment_game_not_liar_word_text)?.text = "$mWord"
+                    view?.findViewById<TextView>(R.id.fragment_game_liar_index_text)?.text = "설명 순서 : ${playerIndex+1}번"
+                }
             }
 
             /**
@@ -128,6 +136,11 @@ class GameFragment(word : String, onGameEventListener: OnGameEventListener) : Fr
                 /**
                  * FIXME : 확인 완료 버튼 만들어보기
                  */
+                isShowCover = true
+                playerIndex ++
+                if (playerIndex == DEFINES.PLAYER_COUNT) {
+                    view?.findViewById<TextView>(R.id.fragment_game_find_liar_layout)?.visibility =  View.VISIBLE
+                }
             }
 
             /**
