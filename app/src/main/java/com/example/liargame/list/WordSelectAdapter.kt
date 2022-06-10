@@ -28,7 +28,7 @@ class WordSelectAdapter(val mode : String, val list : ArrayList<String>) :
     }
 
     interface OnItemClickListener {
-        fun onClick(view : View, position : Int, mode : String)
+        fun onItemClick(view : View, position : Int, mode : String)
     }
 
     inner class ViewHolder(view : View) : RecyclerView.ViewHolder(view) {
@@ -36,9 +36,6 @@ class WordSelectAdapter(val mode : String, val list : ArrayList<String>) :
 
         fun bind(item : String) {
             listItemTxt.text = item
-
-            // FIXME
-//            listItemTxt.setOnClickListener()
         }
     }
 
@@ -53,7 +50,7 @@ class WordSelectAdapter(val mode : String, val list : ArrayList<String>) :
 
             holder.itemView.setOnClickListener {
                 Log.d("[PopupFragment]", "itemView onClick -> position : $position")
-                mItemClickListener.onClick(it, position, mMode!!)
+                mItemClickListener.onItemClick(it, position, mMode!!)
             }
         }
     }

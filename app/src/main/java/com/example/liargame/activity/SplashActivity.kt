@@ -31,6 +31,8 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        supportActionBar?.hide()
+
         startButton = findViewById<TextView>(R.id.activity_splash_start_button)
 
         Handler(Looper.getMainLooper()).postDelayed({

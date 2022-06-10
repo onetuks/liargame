@@ -1,5 +1,6 @@
 package com.example.liargame.listener
 
 interface OnPopupDismissListener {
-    fun onPopupDismissListener(isAnswer : Boolean)
+    fun onWordPopupDismiss(selectWord : String, isAnswer : Boolean)
+    fun onSubjectPopupDismiss(subjectIdx : Int)
 }

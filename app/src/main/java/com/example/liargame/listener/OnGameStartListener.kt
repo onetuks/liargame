@@ -2,6 +2,6 @@ package com.example.liargame.listener
 
 interface OnGameEventListener {
     fun onGameStartListener()
-    fun onGameSelectListener()
+    fun onGameSelectListener(liarIndex : Int)
     fun onGameEndListener()
 }

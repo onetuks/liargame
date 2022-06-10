@@ -74,12 +74,17 @@ class PopupFragment(
                     view.findViewById<TextView>(R.id.fragment_popup_title_text).text = "제시어를 선택해주세요"
                     mAdapter = WordSelectAdapter(mBundle.getString("BRANCH")!!, mList!!)
                 }
+                else -> {
+                    Toast.makeText(mContext, "올바른 접근이 아닙니다. 앱을 재시작해주세요.", Toast.LENGTH_SHORT).show()
+                }
             }
 
             val mRecyclerView = view.findViewById<RecyclerView>(R.id.fragment_popup_button_list)
             mRecyclerView.adapter = mAdapter
-            mRecyclerView.layoutManager = GridLayoutManager(mContext, 3)
-            mRecyclerView.setHasFixedSize(true)
+            val layoutManager = LinearLayoutManager(mContext)
+            layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+            mRecyclerView.layoutManager = layoutManager
+//            mRecyclerView.setHasFixedSize(true)
 
         } else {
             Log.d("[PopupFragment]", "onViewCreated -> mList is null!!")
@@ -93,6 +98,26 @@ class PopupFragment(
     override fun onResume() {
         super.onResume()
 
+        mAdapter!!.setItemClickListener(object : WordSelectAdapter.OnItemClickListener {
+            override fun onItemClick(view: View, position: Int, mode: String) {
+                Log.d("[PopupFragment]", "OnItemClickListener -> onItemClick")
 
+                if (mList != null) {
+                    when (mode) {
+                        "주제" -> {
+                            mPopupDismissListener.onSubjectPopupDismiss(position)
+                        }
+                        "제시어" -> {
+                            mPopupDismissListener.onWordPopupDismiss(mList!!.get(position), mList!!.get(position) == mAnswer)
+                        }
+                        else -> {
+                            // Do Nothing
+                        }
+                    }
+                    dismiss()
+                }
+            }
+
+        })
     }
 }

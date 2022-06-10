@@ -18,12 +18,14 @@ import com.example.liargame.DEFINES.DEFINES
 import com.example.liargame.DEFINES.SubjectEnum
 import com.example.liargame.R
 import com.example.liargame.fragment.GameFragment
+import com.example.liargame.fragment.ResultFragment
 import com.example.liargame.fragment.SettingFragment
 import com.example.liargame.fragment.popup.PopupFragment
 import com.example.liargame.list.WordSelectAdapter
 import com.example.liargame.listener.OnGameEventListener
 import com.example.liargame.listener.OnPopupDismissListener
 import java.util.*
+import javax.security.auth.Subject
 import kotlin.collections.ArrayList
 import kotlin.properties.Delegates
 
@@ -38,7 +40,7 @@ import kotlin.properties.Delegates
  * 5. 뒤로가기 (앱 종료)
  * 6. 무작위로 제시어 선택하기
  */
-class MainActivity : AppCompatActivity(), OnGameEventListener, OnPopupDismissListener, WordSelectAdapter.OnItemClickListener {
+class MainActivity : AppCompatActivity(), OnGameEventListener, OnPopupDismissListener {
 
     private var backPressedTime : Int = 0
 
@@ -47,6 +49,8 @@ class MainActivity : AppCompatActivity(), OnGameEventListener, OnPopupDismissLis
     private var mWord : String? = null
 
     private var mList : ArrayList<String>? = null
+
+    private var mLiarIndex : Int = 0
 
     /**
      * 변경 버튼, 재시작 visible 처리
@@ -107,6 +111,8 @@ class MainActivity : AppCompatActivity(), OnGameEventListener, OnPopupDismissLis
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        supportActionBar?.hide()
 
         isShowResetButton = false
 
@@ -181,47 +187,72 @@ class MainActivity : AppCompatActivity(), OnGameEventListener, OnPopupDismissLis
         }
     }
 
-    override fun onGameSelectListener() {
+    override fun onGameSelectListener(liarIndex : Int) {
         Log.d("[MainActivity]", "onGameSelectListener called -> Find Liar!!")
         isSelectWord = true
+        mLiarIndex = liarIndex
     }
 
     override fun onGameEndListener() {
         Log.d("[MainActivity]"," onGameEndListener called -> Game End!!")
         isSelectWord = false
+        mLiarIndex = 0
         resetGame()
     }
 
     /** OnPopupDismissListener **/
-    override fun onPopupDismissListener(isAnswer: Boolean) {
+    override fun onWordPopupDismiss(selectWord : String, isAnswer: Boolean) {
         Log.d("[MainActivity]"," onPopupDismissListener called -> Game End!!")
 
         when (isAnswer) {
             true -> {
-                Toast.makeText(this, "라이어가 틀렸습니다!!", Toast.LENGTH_LONG).show()
-                resetGame()
+                Toast.makeText(this, "라이어가 맞췄습니다!!", Toast.LENGTH_SHORT).show()
+//                resetGame()
             }
             false -> {
-                Toast.makeText(this, "라이어가 맞췄습니다!!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "라이어가 틀렸습니다!!", Toast.LENGTH_SHORT).show()
             }
         }
         isSelectWord = false
+
+        try {
+            transaction = supportFragmentManager.beginTransaction()
+            transaction!!.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            transaction!!.add(R.id.activity_main_game_frame_layout, ResultFragment(mLiarIndex, selectWord, mWord!!))
+            transaction!!.commit()
+        } catch (e : Exception) {
+            e.printStackTrace()
+        }
     }
 
-    /** WordSelectAdapter OnItemClickListener **/
-    override fun onClick(view: View, position: Int, mode : String) {
-        if (mList != null) {
-            Log.d("[MainActivity]", "WordSelectAdapter onClick -> position : $position / word : ${mList!!.get(position)}")
+    /**
+     * 주제 변경
+     *
+     * TODO
+     * 1. 화면 주제 텍스트 변경
+     * 2. DEFINES.SUBJECT ENUM 변경
+     *
+     * --- 시점 상 안 해도 됨 ---
+     * 3. mList 변경(?)
+     * 4. mWord 변경
+     */
+    override fun onSubjectPopupDismiss(index: Int) {
+        changeSubject(index)
+    }
 
-            when (mode) {
-                "주제" -> {
+    private fun changeSubject(index : Int) {
+        DEFINES.SUBJECT = SubjectEnum.values().get(index)
 
-                }
+        findViewById<TextView>(R.id.activity_main_subject_text).text =
+            when (DEFINES.SUBJECT) {
+                SubjectEnum.JOB -> "직업"
+                SubjectEnum.FOOD -> "음식"
+                SubjectEnum.OBJECT -> "물건"
                 else -> {
-
+                    DEFINES.SUBJECT = SubjectEnum.OBJECT
+                    "물건"
                 }
             }
-        }
     }
 
     private fun resetGame() {

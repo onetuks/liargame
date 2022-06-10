@@ -149,7 +149,7 @@ class GameFragment(word : String, onGameEventListener: OnGameEventListener) : Fr
              * 1. 현재 게임을 리셋
              */
             view?.findViewById<LinearLayout>(R.id.fragment_game_find_liar_layout)?.setOnClickListener {
-                mOnGameEventListener.onGameSelectListener()
+                mOnGameEventListener.onGameSelectListener(liarIndex)
             }
         }
     }
