@@ -9,8 +9,11 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import com.example.liargame.DEFINES.DEFINES
 import com.example.liargame.R
+import com.example.liargame.activity.MainActivity
+import com.example.liargame.fragment.popup.PopupFragment
 import com.example.liargame.listener.OnGameEventListener
 import org.w3c.dom.Text
 import java.util.*
@@ -139,7 +142,7 @@ class GameFragment(word : String, onGameEventListener: OnGameEventListener) : Fr
              * 1. 현재 게임을 리셋
              */
             view?.findViewById<LinearLayout>(R.id.fragment_game_find_liar_layout)?.setOnClickListener {
-                mOnGameEventListener.onGameEndListener()
+                mOnGameEventListener.onGameSelectListener(liarIndex)
             }
         }
     }

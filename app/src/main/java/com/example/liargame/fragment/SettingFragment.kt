@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import com.example.liargame.DEFINES.DEFINES
 import com.example.liargame.DEFINES.GameModeEnum
 import com.example.liargame.R
@@ -56,6 +57,8 @@ class SettingFragment(onGameStartListener: OnGameEventListener) : Fragment() {
                         view?.findViewById<TextView>(R.id.fragment_setting_player_count_text)?.text =
                             "${DEFINES.PLAYER_COUNT}명"
                     }
+                } else {
+                    Toast.makeText(context, "최소 3명 이상이어야 합니다.", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -68,6 +71,8 @@ class SettingFragment(onGameStartListener: OnGameEventListener) : Fragment() {
                         view?.findViewById<TextView>(R.id.fragment_setting_player_count_text)?.text =
                             "${DEFINES.PLAYER_COUNT}명"
                     }
+                } else {
+                    Toast.makeText(context, "최대 7명까지여야 합니다.", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -106,6 +111,8 @@ class SettingFragment(onGameStartListener: OnGameEventListener) : Fragment() {
                         view?.findViewById<TextView>(R.id.fragment_setting_hint_count_text)?.text =
                             "${DEFINES.HINT_COUNT}"
                     }
+                } else {
+                    Toast.makeText(context, "최소 3개 이상이어야 합니다.", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -118,6 +125,8 @@ class SettingFragment(onGameStartListener: OnGameEventListener) : Fragment() {
                         view?.findViewById<TextView>(R.id.fragment_setting_hint_count_text)?.text =
                             "${DEFINES.HINT_COUNT}"
                     }
+                } else {
+                    Toast.makeText(context, "최대 9개 이하이어야 합니다.", Toast.LENGTH_SHORT).show()
                 }
             }
 
