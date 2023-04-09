@@ -92,13 +92,6 @@ class GameFragment(word : String, onGameEventListener: OnGameEventListener) : Fr
         initWidgets()
     }
 
-    override fun onResume() {
-        super.onResume()
-
-
-
-    }
-
     private fun initWidgets() {
         if (view != null) {
 

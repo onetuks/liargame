@@ -94,11 +94,6 @@ class MainActivity : AppCompatActivity(), OnGameEventListener, OnPopupDismissLis
         initWidgets()
     }
 
-    override fun onResume() {
-        super.onResume()
-
-    }
-
     // 뒤로가기 버튼 클릭 시 호출
     override fun onBackPressed() {
         if (backPressedTime == 0) {

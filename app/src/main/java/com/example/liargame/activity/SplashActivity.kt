@@ -9,13 +9,16 @@ import android.widget.Button
 import android.widget.TextView
 import com.example.liargame.R
 
+/**
+ * 재밌다 키키키키키키키키ㅣ
+ */
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var startButton : TextView
 
     // 다른 액티비티에서도 사용할 수 있도록 하는 object
     companion object {
-        var WRITER : String = "이아영"
+        var WRITER : String = "박세영"
     }
 
     /**
